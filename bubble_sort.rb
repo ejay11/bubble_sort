@@ -1,31 +1,27 @@
-def bubble_sort(array)
-#  sorted = array.min(array.length){ |a, b| a <=> b}
-#  print sorted
-#  sorted
-# end
+# frozen_string_literal: true
 
+def swap_numbers(array, index)
+  num1 = array[index]
+  num2 = array[index + 1]
+  array[index] = num2
+  array[index + 1] = num1
+end
 
-#Other method without max enumerable - not sure if above counts as bubble sorting
-x = 0
 def check(array)
   array.each_with_index do |number, index|
     check_index = (index + 1) - array.length
-    if check_index == 0 
-      return array
-    elsif number > array[check_index]
-      move = array.delete_at(index) 
-      array.insert(check_index, number)
-    end
-  end
-  end
+    return array if check_index.zero? == true
 
-while x < array.length do
-  check(array)
-x += 1
+    swap_numbers(array, index) if number > array[check_index]
+  end
 end
 
-print array
+def bubble_sort(array)
+  0.upto(array.length - 1) do
+    check(array)
+  end
 
+  print array
 end
 
-bubble_sort([4,3,78,2,0,2])
+bubble_sort([4, 3, 78, 2, 0, 2])
